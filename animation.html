@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>circle</title>
+	<style type="text/css">
+</style>
+</head>
+<body>
+   <button type="button" onclick="sound()">sound</button>
+  <button type="button" onclick="eject()">Refresh</button>
+  <canvas   id="myCanvas"  style="position: relative; border:5px solid black;"> </canvas>
+  <script>
+     document.getElementById('myCanvas').addEventListener("click", evolve);
+    var radius=40;
+    var canvas = document.getElementById('myCanvas');
+    var context = canvas.getContext('2d');
+       var height = canvas.height = window.innerHeight; // set height to full window
+    var width = canvas.width = window.innerWidth; // set width to full window
+    function evolve(a)
+    {
+     var pos = Mouseposition(canvas,a);
+       var posx = pos.x; // randomize it
+      var  posy = pos.y; // randomize
+        context.beginPath();
+        context.strokeStyle="blue";
+        context.fillStyle = "red";
+        context.arc(posx,posy,radius, 0 , 2 * Math.PI,true);
+        context.stroke();
+        context.fillText("Softwae Incubator",posx-40,posy);
+        radius+=2;
+        if(radius<70)
+         {console.log(8);  
+              requestAnimationFrame(evolve);
+         }
+       }
+
+       function Mouseposition(canvas, even) {
+        var rect = canvas.getBoundingClientRect();
+        return {
+          x: even.clientX - rect.left,
+          y: even.clientY - rect.top
+        };
+      } 
+      
+      function eject()
+      {
+        var canvas= document.getElementById('myCanvas');
+        const context = canvas.getContext('2d');
+
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        radius=4;
+      }
+/* function sound()
+     {
+
+     beep=new Audio();
+    context.beep src="beep1.mp3";
+    beep.play();
+  }*/
+
+    </script>
+  </body>
+  </html>
